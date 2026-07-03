@@ -36,20 +36,20 @@ jobs:
       COVERAGE_FLOOR: "0.0"
     steps:
       - name: Checkout ffs
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: ffs
 
       # go.mod carries `replace` directives onto two sibling modules, so both
       # must sit next to this one for the local build to resolve.
       - name: Checkout ufs (sibling replace target)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: go-filesystems/ufs
           path: ufs
 
       - name: Checkout interface (sibling replace target)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: go-filesystems/interface
           path: interface
@@ -60,7 +60,7 @@ jobs:
           sudo apt-get install -y makefs
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: stable
           check-latest: true
@@ -127,24 +127,24 @@ jobs:
             qemu: qemu
     steps:
       - name: Checkout ffs
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: ffs
 
       - name: Checkout ufs (sibling replace target)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: go-filesystems/ufs
           path: ufs
 
       - name: Checkout interface (sibling replace target)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: go-filesystems/interface
           path: interface
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: stable
           check-latest: true
