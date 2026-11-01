@@ -38,6 +38,14 @@ Everything the `ufs` driver provides:
 See [`go-filesystems/ufs`](https://github.com/go-filesystems/ufs) for the full
 capability list and details.
 
+## Untrusted input
+
+`ffs` re-exports `go-filesystems/ufs`, so it inherits that module's bounds on an
+attacker-controlled image (v0.4.0): a read grows its buffer with the blocks it
+reads, a symlink target is at most 4096 bytes, and a sparse file is limited to
+`DefaultMaxFileBytes` (1 GiB), lowered with `fs.SetMaxFileBytes(n)`; a read over
+it fails with an error wrapping `ufs.ErrTooLarge`.
+
 ## Module
 
 ```
